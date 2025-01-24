@@ -4,14 +4,17 @@ import { createStore } from 'redux';
 import App from './App';
 import {composeWithDevTools} from "redux-devtools-extension";
 var defaultState =0 ;
+//action types
+const DEPOSIT= "DEPOSIT";
+const WITHDRAW= "WITHDRAW";
 
 //reducers
 const balanceReducer =(state=defaultState,action)=>{
     console.log("reducer invoked",action);
     switch (action.type){
-        case "DEPOSIT":
+        case DEPOSIT:
             return state + action.payload.amount;
-        case "WITHDRAW":
+        case WITHDRAW:
             return state - action.payload.amount;
             default:
                 return state;
@@ -25,15 +28,15 @@ store.subscribe(()=>{
 });
 //dispatch
 store.dispatch({
-    type:"DEPOSIT",payload:{amount:1000}
+    type:DEPOSIT,payload:{amount:1000}
 });
 
 store.dispatch({
-    type:"DEPOSIT",payload:{amount:450}
+    type:DEPOSIT,payload:{amount:450}
 });
 
 store.dispatch({
-    type:"WITHDRAW",payload:{amount:250}
+    type:WITHDRAW,payload:{amount:250}
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
