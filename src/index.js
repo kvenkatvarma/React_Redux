@@ -10,9 +10,9 @@ const balanceReducer =(state=defaultState,action)=>{
     console.log("reducer invoked",action);
     switch (action.type){
         case "DEPOSIT":
-            return state + 100;
+            return state + action.payload.amount;
         case "WITHDRAW":
-            return state - 100;
+            return state - action.payload.amount;
             default:
                 return state;
     }
@@ -25,15 +25,15 @@ store.subscribe(()=>{
 });
 //dispatch
 store.dispatch({
-    type:"DEPOSIT"
+    type:"DEPOSIT",payload:{amount:1000}
 });
 
 store.dispatch({
-    type:"DEPOSIT"
+    type:"DEPOSIT",payload:{amount:450}
 });
 
 store.dispatch({
-    type:"WITHDRAW"
+    type:"WITHDRAW",payload:{amount:250}
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
