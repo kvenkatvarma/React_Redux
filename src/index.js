@@ -8,6 +8,17 @@ var defaultState =0 ;
 const DEPOSIT= "DEPOSIT";
 const WITHDRAW= "WITHDRAW";
 
+//action creators
+const deposit =(amount)=>{
+    return {
+        type:DEPOSIT,payload:{amount:amount}
+    }
+};
+const withdraw =(amount)=>{
+    return {
+        type:WITHDRAW,payload:{amount:amount}
+    }
+};
 //reducers
 const balanceReducer =(state=defaultState,action)=>{
     console.log("reducer invoked",action);
@@ -27,17 +38,11 @@ store.subscribe(()=>{
     console.log(store.getState());
 });
 //dispatch
-store.dispatch({
-    type:DEPOSIT,payload:{amount:1000}
-});
+store.dispatch(deposit(1000));
 
-store.dispatch({
-    type:DEPOSIT,payload:{amount:450}
-});
+store.dispatch(deposit(450));
 
-store.dispatch({
-    type:WITHDRAW,payload:{amount:250}
-});
+store.dispatch(withdraw(250));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
